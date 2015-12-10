@@ -1,4 +1,4 @@
-# Group homework 1:
+# Group project 1:
 Task1: Create two methods ,encypt - takes a text and encrypts it ,and decrypt - takes an encrypted text and decrypts it.
 
 Task2: Create console based Tic-Tac-Toe game.
