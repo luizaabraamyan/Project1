@@ -3,4 +3,4 @@ Task1: Create two methods ,encypt - takes a text and encrypts it ,and decrypt - 
 
 Task2: Create console based Tic-Tac-Toe game.
 
-Task3: On e NxM matrix map out the possible horse moves from a given cell.
+Task3: On e NxM matrix map out the possible knigth moves from a given cell.
