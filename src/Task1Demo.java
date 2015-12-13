@@ -5,26 +5,21 @@ public class Task1Demo {
 		char[][] matrix = { { 'A', 'I', 'O', 'C', 'P' }, { 'N', 'T', 'E', 'J', 'M' }, { 'D', 'K', 'U', 'G', 'S' },
 				{ 'W', 'H', 'R', 'L', 'Y' }, { 'F', 'Q', 'B', 'V', 'X' } };
 
+		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter some text: ");
 		String text = input.next();
-		String upperText;
-
-		upperText = text.toUpperCase();
-		int len = upperText.length();
-
-		if (upperText.length() % 2 != 0) {
-			upperText = upperText + "A";
+		int len = text.length();
+		if (text.length() % 2 != 0) {
+			text += "A";
 		}
-
-		String getEncryptedText = encryption(matrix, upperText);
-		System.out.println("Crypted text: " + getEncryptedText);
-
-		String getDecryptedText = decryption(matrix, getEncryptedText, len);
-		System.out.println("Decrypted text: " + getDecryptedText);
-
+		text = text.toUpperCase();
+		String encryptedText;
+		encryptedText = encryption(matrix, text);
+		System.out.println("Encrypted text: " + encryptedText);
+		String decryptedText;
+		decryptedText = decryption(matrix, encryptedText, len);
+		System.out.println("Decrypted text: " + decryptedText);
 		input.close();
-
-	}
 
 }
