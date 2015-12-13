@@ -1,7 +1,7 @@
 
 public class Task1 {
-  
-  static String encryption(char[][] matrix, String text) {
+
+	static String encryption(char[][] matrix, String text) {
 
 		char letter1;
 		char letter2;
@@ -133,4 +133,5 @@ public class Task1 {
 		}
 		return decrText.toString();
 
+	}
 }

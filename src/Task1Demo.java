@@ -1,13 +1,18 @@
+import java.util.Scanner;
 
 public class Task1Demo {
 
 	public static void main(String[] args) {
-		char[][] matrix = { { 'A', 'I', 'O', 'C', 'P' }, { 'N', 'T', 'E', 'J', 'M' }, { 'D', 'K', 'U', 'G', 'S' },
-				{ 'W', 'H', 'R', 'L', 'Y' }, { 'F', 'Q', 'B', 'V', 'X' } };
+		char[][] matrix = { 
+				{ 'A', 'I', 'O', 'C', 'P' }, 
+				{ 'N', 'T', 'E', 'J', 'M' },
+				{ 'D', 'K', 'U', 'G', 'S' },
+				{ 'W', 'H', 'R', 'L', 'Y' },
+				{ 'F', 'Q', 'B', 'V', 'X' } };
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter some text: ");
-		String text = input.next();
+		String text = input.nextLine();
 		String upperText;
 
 		upperText = text.toUpperCase();
@@ -17,10 +22,10 @@ public class Task1Demo {
 			upperText = upperText + "A";
 		}
 
-		String getEncryptedText = encryption(matrix, upperText);
+		String getEncryptedText = Task1.encryption(matrix, upperText);
 		System.out.println("Crypted text: " + getEncryptedText);
 
-		String getDecryptedText = decryption(matrix, getEncryptedText, len);
+		String getDecryptedText = Task1.decryption(matrix, getEncryptedText, len);
 		System.out.println("Decrypted text: " + getDecryptedText);
 
 		input.close();
