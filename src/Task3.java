@@ -18,18 +18,18 @@ public class Task3 {
 		return board;
 	}
 
-	static char[][] mapPossibleMoves(char[][] board, int x, int y, double waitSeconds, boolean outputOnEveryMove) {
-		if (validInput(board.length, board[0].length, x, y) && board[x][y] != '*') {
-			board[x][y] = '*';
+	private static char[][] mapPossibleMoves(char[][] board, int x, int y, double waitSeconds, boolean outputOnEveryMove) {
+		if (validInput(board.length, board[0].length, x, y) && board[x][y] != 'X') {
+			board[x][y] = 'X';
 			if (outputOnEveryMove) {
 				output(board);
 				wait(waitSeconds);
 			}
-			mapPossibleMoves(board, x + 2, y + 1, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x + 1, y + 2, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x + 2, y - 1, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x + 1, y - 2, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x - 1, y + 2, waitSeconds, outputOnEveryMove);
+			mapPossibleMoves(board, x + 2, y + 1, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x - 2, y - 1, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x - 2, y + 1, waitSeconds, outputOnEveryMove);
 			mapPossibleMoves(board, x - 1, y - 2, waitSeconds, outputOnEveryMove);
@@ -37,21 +37,21 @@ public class Task3 {
 		return board;
 	}
 
-	static void output(char[][] board) {
+	private static void output(char[][] board) {
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board[row].length; col++) {
-				System.out.print(board[row][col] + " ");
+				System.out.print("|" + board[row][col]);
 			}
 			System.out.println("|");
 		}
 		System.out.println("");
 	}
 
-	static boolean validInput(int boardDimX, int boardDimY, int startX, int startY) {
+	private static boolean validInput(int boardDimX, int boardDimY, int startX, int startY) {
 		return (boardDimX > startX && boardDimY > startY && startX >= 0 && startY >= 0);
 	}
 
-	static void wait(double seconds) {
+	private static void wait(double seconds) {
 		try {
 			Thread.sleep((long) (seconds * 1000));
 		} catch (InterruptedException e) {
