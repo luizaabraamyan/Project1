@@ -10,7 +10,7 @@ public class Task3 {
 		}
 		if (validInput(boardDimX, boardDimY, startX, startY)) {
 			mapPossibleMoves(board, startX, startY, waitSeconds, outputOnEveryMove);
-			if( !outputOnEveryMove ){
+			if (!outputOnEveryMove) {
 				output(board);
 			}
 
@@ -18,24 +18,25 @@ public class Task3 {
 		return board;
 	}
 
-	private static char[][] mapPossibleMoves(char[][] board, int x, int y, double waitSeconds, boolean outputOnEveryMove) {
+	private static char[][] mapPossibleMoves(char[][] board, int x, int y, double waitSeconds,
+			boolean outputOnEveryMove) {
 		if (validInput(board.length, board[0].length, x, y) && board[x][y] != 'X') {
 			board[x][y] = 'X';
 			if (outputOnEveryMove) {
 				output(board);
 				wait(waitSeconds);
 			}
-			mapPossibleMoves(board, x + 1, y + 2, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x + 2, y - 1, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x + 1, y - 2, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x - 1, y + 2, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x + 2, y + 1, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x - 2, y - 1, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x - 2, y + 1, waitSeconds, outputOnEveryMove);
-			mapPossibleMoves(board, x - 1, y - 2, waitSeconds, outputOnEveryMove);
+
+			for (int index = 0; index < movesArray.length; index++) {
+				mapPossibleMoves(board, x + movesArray[index][0], y + movesArray[index][1], waitSeconds,
+						outputOnEveryMove);
+			}
 		}
 		return board;
 	}
+
+	static private int[][] movesArray = { { 1, 2 }, { 2, -1 }, { 1, -2 }, { -1, 2 }, { 2, 1 }, { -2, -1 }, { -2, 1 },
+			{ -1, -2 } };
 
 	private static void output(char[][] board) {
 		for (int row = 0; row < board.length; row++) {

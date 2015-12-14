@@ -22,6 +22,35 @@ public class TicTacToe {
 
 	}
 
+	public static void playGame() {
+		TicTacToe game = new TicTacToe();
+		Scanner sc = new Scanner(System.in);
+		int coordX, coordY;
+	
+		while (game.gameOver == false) {
+			do {
+				if (game.currPlayer2) {
+					System.out.print("Player2");
+				} else {
+					System.out.print("Player1");
+				}
+				System.out.print(" enter next coordinates : ");
+				coordX = sc.nextInt();
+				coordY = sc.nextInt();
+	
+			} while ( !game.inputPoint(coordX, coordY) );
+	
+			for (int row = 0; row < game.gameMatrix.length; row++) {
+				for (int col = 0; col < game.gameMatrix[0].length; col++) {
+					System.out.print("|" + game.gameMatrix[row][col]);
+				}
+				System.out.println("|");
+			}
+			game.checkForGameEnd(sc);
+		}
+		sc.close();
+	}
+
 	private boolean inputPoint(int x, int y) {
 		if (x > 3 || x < 1 || y > 3 || y < 1 || this.gameMatrix[x - 1][y - 1] != ' ') {
 			return false;
@@ -35,6 +64,22 @@ public class TicTacToe {
 		this.gameMatrix[x - 1][y - 1] = move;
 		this.currPlayer2 = !this.currPlayer2;
 		return true;
+	}
+
+	private void checkForGameEnd(Scanner sc) {
+		if (checkForWin() == true) {
+			if (currPlayer2) {
+				System.out.print("Player1  won.");
+			} else {
+				System.out.print("Player2  won.");
+			}
+			askUser(sc);
+		} else {
+			if (checkForDraw() == true) {
+				System.out.print("Draw. ");
+				askUser(sc);
+			}
+		}
 	}
 
 	private boolean checkForWin() {
@@ -59,22 +104,6 @@ public class TicTacToe {
 			}
 		}
 		return false;
-	}
-
-	private void checkForGameEnd(Scanner sc) {
-		if (checkForWin() == true) {
-			if (currPlayer2) {
-				System.out.print("Player1  won.");
-			} else {
-				System.out.print("Player2  won.");
-			}
-			askUser(sc);
-		} else {
-			if (checkForDraw() == true) {
-				System.out.print("Draw. ");
-				askUser(sc);
-			}
-		}
 	}
 
 	private boolean checkForDraw() {
@@ -109,34 +138,5 @@ public class TicTacToe {
 		if (this.gameOver == false) {
 			init();
 		}
-	}
-
-	public static void playGame() {
-		TicTacToe game = new TicTacToe();
-		Scanner sc = new Scanner(System.in);
-		int coordX, coordY;
-
-		while (game.gameOver == false) {
-			do {
-				if (game.currPlayer2) {
-					System.out.print("Player2");
-				} else {
-					System.out.print("Player1");
-				}
-				System.out.print(" enter next coordinates : ");
-				coordX = sc.nextInt();
-				coordY = sc.nextInt();
-
-			} while (!game.inputPoint(coordX, coordY));
-
-			for (int row = 0; row < game.gameMatrix.length; row++) {
-				for (int col = 0; col < game.gameMatrix[0].length; col++) {
-					System.out.print("|" + game.gameMatrix[row][col]);
-				}
-				System.out.println("|");
-			}
-			game.checkForGameEnd(sc);
-		}
-		sc.close();
 	}
 }
